@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_installment_wizard_form" model="ir.ui.view">
+            <field name="name">installment.wizard.form</field>
+            <field name="model">installment.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="account_move_id" invisible="1" />
+                        <field name="total_installment" required="1" />
+                        <field name="quantity_installments" required="1" />
+                        <field name="value_installments" required="1" />
+                        <field name="first_due_date" required="1" />
+                        <field name="frequency" required="1" />
+                    </group>
+                    <footer>
+                        <button string="Parcelar" class="btn-primary" type="object" name="create_installments"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

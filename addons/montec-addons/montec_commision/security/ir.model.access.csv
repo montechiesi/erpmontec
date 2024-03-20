@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+montec_commision.access_montec_commission,access_montec_commission,montec_commision.model_montec_commission,base.group_user,1,1,1,1
+montec_commision.access_montec_comission_report_wizard,access_montec_comission_report_wizard,montec_commision.model_montec_comission_report_wizard,base.group_user,1,1,1,1

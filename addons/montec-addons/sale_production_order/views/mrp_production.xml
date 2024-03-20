@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_inherit_mrp_production_form" model="ir.ui.view">
+        <field name="name">Ordem de Produção inherit</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_mark_done']" position="before">
+                <button name="print_report" string="Imprimir OP" type="object" class="oe_highlight" />
+            </xpath>
+
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="nominal_one" />
+                <field name="nominal_two" />
+                <field name="nominal_three" />
+                <field name="material_sae" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_inherit_mrp_production_tree" model="ir.ui.view">
+        <field name="name">Ordem de Produção Tree inherit</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='json_popover']" position="after">
+                <button name="print_report" string="Imprimir OP" type="object" class="oe_highlight" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

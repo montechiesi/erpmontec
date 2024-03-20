@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <!-- views.xml -->
+
+    <record id="view_report_wizard_form" model="ir.ui.view">
+        <field name="name">report.wizard.form</field>
+        <field name="model">report.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="report_type"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="account_analytical_id" />
+                    <field name="journal_id" />
+                    <!-- <field name="posteds" /> -->
+                </group>
+                <footer>
+                    <button string="Generate Report" type="object" class="oe_highlight" name="print_report"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- actions.xml -->
+
+    <record id="action_report_wizard" model="ir.actions.act_window">
+        <field name="name">Relatórios Financeiros</field>
+        <field name="res_model">report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="montec_account_reports.view_report_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+
+    <menuitem id="menu_generate_report" name="Demais Relatórios" parent="account.menu_finance_reports" 
+                  sequence="10" action="action_report_wizard"/>
+
+
+</odoo>

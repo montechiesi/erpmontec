@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+plm.access_plm_type,access_plm_type,plm.model_plm_type,base.group_user,1,1,1,1
+plm.access_plm_stage,access_plm_stage,plm.model_plm_stage,base.group_user,1,1,1,1
+plm.access_plm_stage_approval_lines,access_plm_stage_approval_lines,plm.model_plm_stage_approval_lines,base.group_user,1,1,1,1
+plm.access_plm_tag,access_plm_tag,plm.model_plm_tag,base.group_user,1,1,1,1
+plm.access_plm_oae,access_plm_oae,plm.model_plm_oae,base.group_user,1,1,1,1
+2024-01-22 09:45:50 plm.access_plm_oae_approval_lines,access_plm_oae_approval_lines,plm.model_plm_oae_approval_lines,base.group_user,1,1,1,1

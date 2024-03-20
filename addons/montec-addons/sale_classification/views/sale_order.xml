@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_inherit_sale_order_tree" model="ir.ui.view">
+        <field name="name">Sale Order inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='commitment_date']" position="after">
+                <field name="hoje" invisible="1" />
+                <field name="montec_commitment_date" invisible="1" />
+            </xpath>
+
+            <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-warning">montec_commitment_date == hoje and state == 'sale'</attribute>
+                <attribute name="decoration-danger">montec_commitment_date &lt; hoje and state == 'sale'</attribute>
+                <attribute name="decoration-success">montec_commitment_date &gt; hoje and state == 'sale'</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

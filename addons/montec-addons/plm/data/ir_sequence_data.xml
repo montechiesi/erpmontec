@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <record id="plm_oea_sequence" model="ir.sequence">
+        <field name="name">Sequência Ordem de ALteração de Engenharia</field>
+        <field name="code">plm.oea.seq</field>
+        <field name="prefix">ECO</field>
+        <field name="padding">4</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_inherit_account_move_form_form" model="ir.ui.view">
+        <field name="name">Account Move inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+        
+            <xpath expr="//button[@name='action_invoice_sent']" position="after">
+                <button name="confirm_invoice_frequency" type="object" string="Confirmar Fatura Frequênte" attrs="{'invisible': [('state', '=', 'invoice_model')]}" />
+                <!-- <button name="montec_create_account" type="object" string="Teste"/> -->
+            </xpath>
+            <xpath expr="//group[@id='header_left_group']//div[@class='o_td_label']//label[2]" position="attributes">
+                <attribute name="string">Pagar para</attribute>
+            </xpath>
+
+            <xpath expr="//label[@for='ref']" position="attributes">
+                <attribute name="string">Histórico</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='payment_reference']" position="attributes">
+                <attribute name="string">Documento</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='payment_reference']" position="after">
+                <field name="document_number" />
+                <field name="frequency" />
+            </xpath>
+            
+            
+            <xpath expr="//group[@name='accounting_info_group']" position="after">
+                <group string="Informações Adicionais" name="montec_more_information">
+                    <field name="carrier" />
+                    <field name="observation" />
+                    <field name="competence" />
+                    <field name="code_pix" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_inherit_view_invoice_tree_form" model="ir.ui.view">
+        <field name="name">Account Move Tree inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_partner_display_name'][1]" position="attributes">
+                <attribute name="string">Pagar para</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

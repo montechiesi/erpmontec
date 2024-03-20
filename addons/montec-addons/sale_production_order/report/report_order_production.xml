@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_order_production_template" model="ir.actions.report">
+            <field name="name">Ordem de Produção</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sale_production_order.report_order_production_template</field>
+            <field name="report_file">sale_production_order.report_order_production_template</field>
+            <field name="print_report_name">'Ordens de Produção - %s' %(object.name)</field>
+            <field name="paperformat_id" ref="sale_production_order.paperformat_a4_custom"/>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="report_order_production_template">
+            <t t-call="web.basic_layout">
+                <t t-set="mrp_production_ids" t-value="env['mrp.production'].search([('id', 'in', production_ids)])"/>
+                <t t-foreach="mrp_production_ids" t-as="mrp_production">
+                    <!-- <t t-set="mrp_production" t-value="env['mrp.production'].browse(mrp_production_id)"/> -->
+                    <div class="page" style="border: 2px solid #000;">
+                        <header style="border: 1px solid #000;">
+                            <div style="border-bottom: 1px solid #000;">
+                                <p style="text-align: center; font-size: large; font-weight: bold; margin-top: 0; margin-bottom: 0;">Ordem de Produção</p>
+                            </div>
+                            <div style="display: flex; display: -webkit-box; ">
+                                <!-- custom_login_page -->
+                                <div style="margin-left: 10px; margin-top: 5px;">
+                                    <img src="/sale_production_order/static/src/img/logo.png" alt="Logo" style="max-height:180px; max-width: 100%; width:auto"/>
+                                    <p style="font-weight: bold; font-size: small; text-align: center; margin-top: 0;">METALURGICA ZETAR LTDA</p>
+                                </div>
+                                <div style="margin-left: 20px; max-height: 80px;">
+                                    <p style="margin: 10px;"><span style="font-weight: bold;">Ordem de Produção Nº: </span> <t t-esc="object['name']"/></p>
+                                    <p style="margin: 10px;"><span style="font-weight: bold;">Cliente: </span> <t t-esc="mrp_production.sale_order_line_id.order_id.partner_id.name"/></p>
+                                    <p style="margin: 10px;"><span style="font-weight: bold;">Emissão: </span> <t t-esc="mrp_production.create_date.strftime('%d/%m/%Y')"/></p>
+                                    <p style="margin: 10px;"><span style="font-weight: bold;">Data de Entrega: </span> <t t-esc="mrp_production.date_deadline.strftime('%d/%m/%Y')"/></p>
+                                    <p style="margin: 10px;"><span style="font-weight: bold;">Quantidade de Peças em Estoque: </span> ________________</p>
+                                    <p style="margin: 10px;"><span style="font-weight: bold;">Quantidade de Peças a Produzir:  </span> ________________</p>
+                                </div>
+                            </div>
+                        </header>
+                        <div style="padding: 20px;">
+                            <div style="display: flex; display: -webkit-box; ">
+                                <div style="width: 70%">
+                                    <h3><span style="font-weight: bold;">Produto:</span> <t t-esc="mrp_production.product_id.name"/></h3>
+                                    <p><span style="font-weight: bold;">Quantidade:</span> <t t-esc="mrp_production.product_qty"/> PEÇAS</p>
+                                </div>
+                                <div style="padding: 5px 10px; border-radius: 5px; margin-right: 10px; text-align: center; text-transform: uppercase; font-size: 14px; color: black; border: 1px solid black;">
+                                    <h1>ORIGINAL</h1>
+                                </div>
+                            </div>
+                            <table style="border-collapse: collapse; width: 100%; margin-top: 30px;">
+                                <tbody>
+                                    <tr>
+                                        <td style="border: 1px solid #000;">NOMINAL</td>
+                                        <td style="border: 1px solid #000;"><t t-esc="mrp_production.nominal_one"/></td>
+                                        <td style="border: 1px solid #000;">X</td>
+                                        <td style="border: 1px solid #000;"><t t-esc="mrp_production.nominal_two"/></td>
+                                        <td style="border: 1px solid #000;">X</td>
+                                        <td style="border: 1px solid #000;"><t t-esc="mrp_production.nominal_three"/></td>
+                                        <td style="border: 1px solid #000;">PESO/MIL</td>
+                                        <td style="border: 1px solid #000;"><t t-esc="round(((mrp_production.nominal_one*mrp_production.nominal_one*0.00616*mrp_production.nominal_three)-(mrp_production.nominal_two*mrp_production.nominal_two*0.00616*mrp_production.nominal_three)), 2)"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" style="height: 17px; border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr style="text-align: center;">
+                                        <td colspan="8" style="border: 1px solid #000;"> SAE 1010/20 = 30 <span style="margin: 0 15px;"> • </span> SAE 1030/45= 50 <span style="margin: 0 15px;"> • </span> SAE 1045/70 <span style="margin: 0 15px;"> • </span> INOX = 50</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" style="height: 17px; border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000;">MATERIAL SAE</td>
+                                        <td style="border: 1px solid #000;"><t t-esc="mrp_production.material_sae"/></td>
+                                        <td style="border: 1px solid #000;" colspan="6"><span style="font-weight: bold;">SAE 1020</span></td>
+                                    </tr>
+                                    <tr style="text-align: center;">
+                                        <td colspan="4" style="width: 50%; border: 1px solid #000;">Ø TOLERÂNCIAS</td>
+                                        <td colspan="4" style="width: 50%; border: 1px solid #000;">Ø ENCONTRADO</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000;">EXTERNO</td>
+                                        <td style="text-align: right; border: 1px solid #000;"><t t-esc="mrp_production.product_id.external_of"/></td>
+                                        <td style="text-align: center; border: 1px solid #000;">a</td>
+                                        <td style="text-align: right; border: 1px solid #000;"><t t-esc="mrp_production.product_id.external_until"/></td>
+                                        <td colspan="4" style="border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000;">INTERNO</td>
+                                        <td style="text-align: right; border: 1px solid #000;"><t t-esc="mrp_production.product_id.internal_of"/></td>
+                                        <td style="text-align: center; border: 1px solid #000;">a</td>
+                                        <td style="text-align: right; border: 1px solid #000;"><t t-esc="mrp_production.product_id.internal_until"/></td>
+                                        <td colspan="4" style="border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000;">ESPESSURA</td>
+                                        <td style="text-align: right; border: 1px solid #000;"><t t-esc="mrp_production.product_id.thickness_of"/></td>
+                                        <td style="text-align: center; border: 1px solid #000;">a</td>
+                                        <td style="text-align: right; border: 1px solid #000;"><t t-esc="mrp_production.product_id.thickness_until"/></td>
+                                        <td colspan="4" style="border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000;">ALTURA</td>
+                                        <td style="text-align: right; border: 1px solid #000;"><t t-esc="mrp_production.product_id.height_of"/></td>
+                                        <td style="text-align: center; border: 1px solid #000;">a</td>
+                                        <td style="text-align: right; border: 1px solid #000;"><t t-esc="mrp_production.product_id.height_until"/></td>
+                                        <td colspan="4" style="border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000;"></td>
+                                        <td style="text-align: right; border: 1px solid #000;"></td>
+                                        <td style="text-align: center; border: 1px solid #000;">a</td>
+                                        <td style="text-align: right; border: 1px solid #000;"></td>
+                                        <td colspan="4" style="border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" style="height: 17px; border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr style="height: 40px; border: 1px solid #000;">
+                                        <td colspan="3" style="text-align: center; border: 1px solid #000;">
+                                            TRATAMENTO TÉRMICO
+                                        </td>
+                                        <td colspan="5" style="text-align: center; border: 1px solid #000;">
+                                            <span style="font-weight: bold;"><t t-esc="mrp_production.product_id.heat_treatment"/></span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 40px;">
+                                        <td colspan="3" style="text-align: center; border: 1px solid #000;">
+                                            TRATAMENTO SUPERFICIAL
+                                        </td>
+                                        <td colspan="5" style="text-align: center; border: 1px solid #000;">
+                                            <span style="font-weight: bold;"><t t-esc="mrp_production.product_id.superficial_treatment"/></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" style="border: 1px solid #000;"></td>
+                                        <td colspan="3" style="text-align: center; border: 1px solid #000;">
+                                            <span style="font-weight: bold;">TAMBOR/TEMPO INICIAL</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" style="height: 17px; border: 1px solid #000;"></td>
+                                        <td colspan="3" rowspan="4" style="border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="border: 1px solid #000;">PESO LÍQUIDO DO PEDIDO</td>
+                                        <td style="text-align: end; border: 1px solid #000;"><t t-esc="round((mrp_production.product_qty * ((mrp_production.nominal_one*mrp_production.nominal_one*0.00616*mrp_production.nominal_three)-(mrp_production.nominal_two*mrp_production.nominal_two*0.00616*mrp_production.nominal_three))), 2)"/></td>
+                                        <td style="text-align: end; border: 1px solid #000;">KG</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="border: 1px solid #000;">MATERIAL NECESSÁRIO</td>
+                                        <td style="text-align: end; border: 1px solid #000;"><t t-esc="round((mrp_production.product_qty * ((mrp_production.nominal_one*mrp_production.nominal_one*0.00616*mrp_production.nominal_three)-(mrp_production.nominal_two*mrp_production.nominal_two*0.00616*mrp_production.nominal_three)) * 3), 2)"/></td>
+                                        <td style="text-align: end; border: 1px solid #000;">KG</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" style="height: 17px; border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="border: 1px solid #000;">ESTAMPAR EXTERNO</td>
+                                        <t t-set="estampa_externo" t-value="round((mrp_production.nominal_one*3.1416*mrp_production.nominal_three*mrp_production.material_sae), 2)"/>
+                                        <td style="text-align: end; border: 1px solid #000;"><t t-esc="estampa_externo"/></td>
+                                        <td style="text-align: end; border: 1px solid #000;">Ton</td>
+                                        <td colspan="3" style="text-align: center; border: 1px solid #000;">
+                                            <span style="font-weight: bold;">TAMBOR/TEMPO FINAL</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="border: 1px solid #000;">ESTAMPAR INTERNO</td>
+                                        <t t-set="estampa_interno" t-value="round((mrp_production.nominal_two*3.1416*mrp_production.nominal_three*mrp_production.material_sae), 2)"/>
+                                        <td style="text-align: end; border: 1px solid #000;"><t t-esc="estampa_interno"/></td>
+                                        <td style="text-align: end; border: 1px solid #000;">Ton</td>
+                                        <td colspan="3" rowspan="4" style="border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="border: 1px solid #000;">ESTAMPAR TOTAL</td>
+                                        <t t-set="estampa_total" t-value="estampa_externo + estampa_interno"/>
+                                        <td style="text-align: end; border: 1px solid #000;"><t t-esc="estampa_total"/></td>
+                                        <td style="text-align: end; border: 1px solid #000;">Ton</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="border: 1px solid #000;">FOLGA 20%</td>
+                                        <td style="text-align: end; border: 1px solid #000;"><t t-esc="round((estampa_total * 1.2), 2)"/></td>
+                                        <td style="text-align: end; border: 1px solid #000;">Ton</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" style="height: 17px; border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" style="text-align: center; border: 1px solid #000;">CÁLCULO DE APROVEITAMENTO RETALHO</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="text-align: center; height: 35px; border: 1px solid #000;">DIMENSÃO 1ª RETALHO</td>
+                                        <td colspan="3" style="text-align: center; height: 35px; border: 1px solid #000;">ARRUELA P/RETALHO</td>
+                                        <td colspan="2" style="text-align: center; height: 35px; border: 1px solid #000;">QUANTIDADE TOTAL DE RETALHO</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="text-align: center; height: 35px; border: 1px solid #000;"></td>
+                                        <td colspan="3" style="text-align: center; height: 35px; border: 1px solid #000;"></td>
+                                        <td colspan="2" style="text-align: center; height: 35px; border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="text-align: center; height: 35px; border: 1px solid #000;">DIMENSÃO 2ª RETALHO</td>
+                                        <td colspan="3" style="text-align: center; height: 35px; border: 1px solid #000;">ARRUELA P/RETALHO</td>
+                                        <td colspan="2" style="text-align: center; height: 35px; border: 1px solid #000;">QUANTIDADE TOTAL DE RETALHO</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="text-align: center; height: 35px; border: 1px solid #000;"></td>
+                                        <td colspan="3" style="text-align: center; height: 35px; border: 1px solid #000;"></td>
+                                        <td colspan="2" style="text-align: center; height: 35px; border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" style="height: 35px; text-align: center; font-weight: bold; border: 1px solid #000;">
+                                            PESO COM MIOLO E BALDE &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;_____________ KG
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div style="page-break-before: always;"></div>
+                    <div class="page" style="border: 2px solid #000;">
+                        <header style="border: 1px solid #000;">
+                            <div style="border-bottom: 1px solid #000;">
+                                <p style="text-align: center; font-size: large; font-weight: bold; margin-top: 0; margin-bottom: 0;">Ordem de Produção</p>
+                            </div>
+                            <div style="display: flex; display: -webkit-box; ">
+                                <!-- custom_login_page -->
+                                <div style="margin-left: 10px; margin-top: 5px;">
+                                    <img src="/sale_production_order/static/src/img/logo.png" alt="Logo" style="max-height:180px; max-width: 100%; width:auto"/>
+                                    <p style="font-weight: bold; font-size: small; text-align: center; margin-top: 0;">METALURGICA ZETAR LTDA</p>
+                                </div>
+                                <div style="margin-left: 20px; max-height: 80px;">
+                                    <p style="margin: 10px;"><span style="font-weight: bold;">Ordem de Produção Nº: </span> <t t-esc="object['name']"/></p>
+                                    <p style="margin: 10px;"><span style="font-weight: bold;">Cliente: </span> <t t-esc="mrp_production.sale_order_line_id.order_id.partner_id.name"/></p>
+                                    <p style="margin: 10px;"><span style="font-weight: bold;">Emissão: </span> <t t-esc="mrp_production.create_date.strftime('%d/%m/%Y')"/></p>
+                                    <p style="margin: 10px;"><span style="font-weight: bold;">Data de Entrega: </span> <t t-esc="mrp_production.date_deadline.strftime('%d/%m/%Y')"/></p>
+                                    <p style="margin: 10px;"><span style="font-weight: bold;">Quantidade de Peças em Estoque: </span> ________________</p>
+                                    <p style="margin: 10px;"><span style="font-weight: bold;">Quantidade de Peças a Produzir:  </span> ________________</p>
+                                </div>
+                            </div>
+                        </header>
+                        <div style="padding: 20px;">
+                            <div style="display: flex; display: -webkit-box; ">
+                                <div style="width: 80%">
+                                    <h3><span style="font-weight: bold;">Produto:</span> <t t-esc="mrp_production.product_id.name"/></h3>
+                                    <p><span style="font-weight: bold;">Quantidade:</span> ________ PEÇAS</p>
+                                </div>
+                                <div style="padding: 5px 10px; border-radius: 5px; margin-right: 10px; text-align: center; text-transform: uppercase; font-size: 14px; color: black; border: 1px solid black;">
+                                    <h1>CÓPIA</h1>
+                                </div>
+                            </div>
+                            <table style="border-collapse: collapse; width: 100%; margin-top: 30px;">
+                                <tbody>
+                                    <tr>
+                                        <td style="border: 1px solid #000;">NOMINAL</td>
+                                        <td style="border: 1px solid #000;"><t t-esc="mrp_production.nominal_one"/></td>
+                                        <td style="border: 1px solid #000;">X</td>
+                                        <td style="border: 1px solid #000;"><t t-esc="mrp_production.nominal_two"/></td>
+                                        <td style="border: 1px solid #000;">X</td>
+                                        <td style="border: 1px solid #000;"><t t-esc="mrp_production.nominal_three"/></td>
+                                        <td style="border: 1px solid #000;">PESO/MIL</td>
+                                        <td style="border: 1px solid #000;"><t t-esc="round(((mrp_production.nominal_one*mrp_production.nominal_one*0.00616*mrp_production.nominal_three)-(mrp_production.nominal_two*mrp_production.nominal_two*0.00616*mrp_production.nominal_three)), 2)"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" style="height: 17px; border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr style="text-align: center;">
+                                        <td colspan="8" style="border: 1px solid #000;"> SAE 1010/20 = 30 <span style="margin: 0 15px;"> • </span> SAE 1030/45= 50 <span style="margin: 0 15px;"> • </span> SAE 1045/70 <span style="margin: 0 15px;"> • </span> INOX = 50</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" style="height: 17px; border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000;">MATERIAL SAE</td>
+                                        <td style="border: 1px solid #000;"><t t-esc="mrp_production.material_sae"/></td>
+                                        <td style="border: 1px solid #000;" colspan="6"><span style="font-weight: bold;">SAE 1020</span></td>
+                                    </tr>
+                                    <tr style="text-align: center;">
+                                        <td colspan="4" style="width: 50%; border: 1px solid #000;">Ø TOLERÂNCIAS</td>
+                                        <td colspan="4" style="width: 50%; border: 1px solid #000;">Ø ENCONTRADO</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000;">EXTERNO</td>
+                                        <td style="text-align: right; border: 1px solid #000;"><t t-esc="mrp_production.product_id.external_of"/></td>
+                                        <td style="text-align: center; border: 1px solid #000;">a</td>
+                                        <td style="text-align: right; border: 1px solid #000;"><t t-esc="mrp_production.product_id.external_until"/></td>
+                                        <td colspan="4" style="border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000;">INTERNO</td>
+                                        <td style="text-align: right; border: 1px solid #000;"><t t-esc="mrp_production.product_id.internal_of"/></td>
+                                        <td style="text-align: center; border: 1px solid #000;">a</td>
+                                        <td style="text-align: right; border: 1px solid #000;"><t t-esc="mrp_production.product_id.internal_until"/></td>
+                                        <td colspan="4" style="border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000;">ESPESSURA</td>
+                                        <td style="text-align: right; border: 1px solid #000;"><t t-esc="mrp_production.product_id.thickness_of"/></td>
+                                        <td style="text-align: center; border: 1px solid #000;">a</td>
+                                        <td style="text-align: right; border: 1px solid #000;"><t t-esc="mrp_production.product_id.thickness_until"/></td>
+                                        <td colspan="4" style="border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000;">ALTURA</td>
+                                        <td style="text-align: right; border: 1px solid #000;"><t t-esc="mrp_production.product_id.height_of"/></td>
+                                        <td style="text-align: center; border: 1px solid #000;">a</td>
+                                        <td style="text-align: right; border: 1px solid #000;"><t t-esc="mrp_production.product_id.height_until"/></td>
+                                        <td colspan="4" style="border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid #000;"></td>
+                                        <td style="text-align: right; border: 1px solid #000;"></td>
+                                        <td style="text-align: center; border: 1px solid #000;">a</td>
+                                        <td style="text-align: right; border: 1px solid #000;"></td>
+                                        <td colspan="4" style="border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" style="height: 17px; border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr style="height: 40px; border: 1px solid #000;">
+                                        <td colspan="3" style="text-align: center; border: 1px solid #000;">
+                                            TRATAMENTO TÉRMICO
+                                        </td>
+                                        <td colspan="5" style="text-align: center; border: 1px solid #000;">
+                                            <span style="font-weight: bold;"><t t-esc="mrp_production.product_id.heat_treatment"/></span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 40px;">
+                                        <td colspan="3" style="text-align: center; border: 1px solid #000;">
+                                            TRATAMENTO SUPERFICIAL
+                                        </td>
+                                        <td colspan="5" style="text-align: center; border: 1px solid #000;">
+                                            <span style="font-weight: bold;"><t t-esc="mrp_production.product_id.superficial_treatment"/></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" style="border: 1px solid #000;"></td>
+                                        <td colspan="3" style="text-align: center; border: 1px solid #000;">
+                                            <span style="font-weight: bold;">TAMBOR/TEMPO INICIAL</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" style="height: 17px; border: 1px solid #000;"></td>
+                                        <td colspan="3" rowspan="4" style="border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="border: 1px solid #000;">PESO LÍQUIDO DO PEDIDO</td>
+                                        <td style="text-align: end; border: 1px solid #000;"><t t-esc="round((mrp_production.product_qty * ((mrp_production.nominal_one*mrp_production.nominal_one*0.00616*mrp_production.nominal_three)-(mrp_production.nominal_two*mrp_production.nominal_two*0.00616*mrp_production.nominal_three))), 2)"/></td>
+                                        <td style="text-align: end; border: 1px solid #000;">KG</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="border: 1px solid #000;">MATERIAL NECESSÁRIO</td>
+                                        <td style="text-align: end; border: 1px solid #000;"><t t-esc="round((mrp_production.product_qty * ((mrp_production.nominal_one*mrp_production.nominal_one*0.00616*mrp_production.nominal_three)-(mrp_production.nominal_two*mrp_production.nominal_two*0.00616*mrp_production.nominal_three)) * 3), 2)"/></td>
+                                        <td style="text-align: end; border: 1px solid #000;">KG</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" style="height: 17px; border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="border: 1px solid #000;">ESTAMPAR EXTERNO</td>
+                                        <t t-set="estampa_externo" t-value="round((mrp_production.nominal_one*3.1416*mrp_production.nominal_three*mrp_production.material_sae), 2)"/>
+                                        <td style="text-align: end; border: 1px solid #000;"><t t-esc="estampa_externo"/></td>
+                                        <td style="text-align: end; border: 1px solid #000;">Ton</td>
+                                        <td colspan="3" style="text-align: center; border: 1px solid #000;">
+                                            <span style="font-weight: bold;">TAMBOR/TEMPO FINAL</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="border: 1px solid #000;">ESTAMPAR INTERNO</td>
+                                        <t t-set="estampa_interno" t-value="round((mrp_production.nominal_two*3.1416*mrp_production.nominal_three*mrp_production.material_sae), 2)"/>
+                                        <td style="text-align: end; border: 1px solid #000;"><t t-esc="estampa_interno"/></td>
+                                        <td style="text-align: end; border: 1px solid #000;">Ton</td>
+                                        <td colspan="3" rowspan="4" style="border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="border: 1px solid #000;">ESTAMPAR TOTAL</td>
+                                        <t t-set="estampa_total" t-value="estampa_externo + estampa_interno"/>
+                                        <td style="text-align: end; border: 1px solid #000;"><t t-esc="estampa_total"/></td>
+                                        <td style="text-align: end; border: 1px solid #000;">Ton</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="border: 1px solid #000;">FOLGA 20%</td>
+                                        <td style="text-align: end; border: 1px solid #000;"><t t-esc="round((estampa_total * 1.2), 2)"/></td>
+                                        <td style="text-align: end; border: 1px solid #000;">Ton</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" style="height: 17px; border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" style="text-align: center; border: 1px solid #000;">CÁLCULO DE APROVEITAMENTO RETALHO</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="text-align: center; height: 35px; border: 1px solid #000;">DIMENSÃO 1ª RETALHO</td>
+                                        <td colspan="3" style="text-align: center; height: 35px; border: 1px solid #000;">ARRUELA P/RETALHO</td>
+                                        <td colspan="2" style="text-align: center; height: 35px; border: 1px solid #000;">QUANTIDADE TOTAL DE RETALHO</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="text-align: center; height: 35px; border: 1px solid #000;"></td>
+                                        <td colspan="3" style="text-align: center; height: 35px; border: 1px solid #000;"></td>
+                                        <td colspan="2" style="text-align: center; height: 35px; border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="text-align: center; height: 35px; border: 1px solid #000;">DIMENSÃO 2ª RETALHO</td>
+                                        <td colspan="3" style="text-align: center; height: 35px; border: 1px solid #000;">ARRUELA P/RETALHO</td>
+                                        <td colspan="2" style="text-align: center; height: 35px; border: 1px solid #000;">QUANTIDADE TOTAL DE RETALHO</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="text-align: center; height: 35px; border: 1px solid #000;"></td>
+                                        <td colspan="3" style="text-align: center; height: 35px; border: 1px solid #000;"></td>
+                                        <td colspan="2" style="text-align: center; height: 35px; border: 1px solid #000;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" style="height: 35px; text-align: center; font-weight: bold; border: 1px solid #000;">
+                                            PESO COM MIOLO E BALDE &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;_____________ KG
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

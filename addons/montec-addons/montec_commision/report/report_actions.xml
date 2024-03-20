@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="montec_commission_action_report" model="ir.actions.report">
+        <field name="name">Relatório de Comissão</field>
+        <field name="model">montec.commission</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">montec_commision.report_montec_commission</field>
+        <field name="report_file">montec_commision.report_montec_commission</field>
+        <field name="print_report_name">'Relatório de Comissão'</field>
+        <field name="paperformat_id" ref="base.paperformat_euro"/>
+        <field name="binding_model_id" ref="model_montec_commission"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

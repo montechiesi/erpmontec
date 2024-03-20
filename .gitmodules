@@ -1,0 +1,10 @@
+[submodule "docker"]
+	path = docker
+	url = https://github.com/odoo/docker.git
+[submodule "addons/montec-addons"]
+	path = addons/montec-addons
+	url = https://github.com/sem-titulo/montec-addons.git
+[submodule "addons/thirdparty-addons"]
+	path = addons/thirdparty-addons
+	url = https://github.com/sem-titulo/thirdparty-addons.git
+	branch = 15.0

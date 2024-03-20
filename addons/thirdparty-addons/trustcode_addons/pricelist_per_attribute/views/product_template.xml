@@ -1,0 +1,51 @@
+<odoo>
+
+
+    <record id="action_product_attribute_value" model="ir.actions.act_window">
+        <field name="name">Valores de Atributos</field>
+        <field name="res_model">product.attribute.value</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem sequence="5" action="action_product_attribute_value"
+              id="menu_product_attribute_value"
+              parent="sale.prod_config_main"/>
+
+    <record id="view_product_attribute_value_tree" model="ir.ui.view">
+        <field name="model">product.attribute.value</field>
+        <field name="arch" type="xml">
+            <tree default_order="attribute_id, sequence">
+                <field name="attribute_id" />
+                <field name="name" />
+                <field name="html_color" widget="color" />
+                <field name="is_custom" />
+                <field name="display_type" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_product_attribute_value_form" model="ir.ui.view">
+        <field name="model">product.attribute.value</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="attribute_id" invisible="1" />
+                    <field name="name" />
+                    <field name="is_custom" />
+                    <field name="html_color" widget="color" />
+                    <field name="display_type" />
+                    <field name="multiply_attribute_cost" />
+                    <field name="cost_multiplier" attrs="{'invisible': [('multiply_attribute_cost', '=', False)]}" />
+                    <field name="value_price_ids" widget="one2many">
+                        <tree editable="bottom">
+                            <field name="min_quantity" />
+                            <field name="fixed_price" />
+                            <field name="price_type" />
+                        </tree>
+                    </field>
+                </group>
+            </form>
+        </field>
+    </record>
+
+</odoo>

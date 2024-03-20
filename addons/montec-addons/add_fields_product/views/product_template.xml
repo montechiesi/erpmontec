@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_inherit_product_template_form" model="ir.ui.view">
+        <field name="name">Product Template inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">           
+            <xpath expr="//notebook" position="inside">
+                <page string="Medidas" name="montec_measurements">
+                    <group>
+                        <group name="name" string="Tolerâncias">
+                            <field name="external_of" />
+                            <field name="external_until" />
+                            <field name="internal_of" />
+                            <field name="internal_until" />
+                            <field name="thickness_of" />
+                            <field name="thickness_until" />
+                            <field name="height_of" />
+                            <field name="height_until" />
+                        </group>
+                        <group>
+                            <field name="heat_treatment" />
+                            <field name="superficial_treatment" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

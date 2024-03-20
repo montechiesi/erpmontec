@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="page">
+        <header style="border: 1px solid #000;">
+            <div style="border-bottom: 1px solid #000;">
+                <p style="text-align: center; font-size: small; margin-top: 0; margin-bottom: 0;">ROMANEIO EXPEDIÇÃO</p>
+            </div>
+            <div style="display: flex;">
+                <!-- custom_login_page -->
+                <div style="margin-left: 10px; margin-top: 5px;">
+                    <img src="../static/src/img/logo.png" alt="Logo" style="max-height:180px; max-width: 100%; width:auto"/>
+                    <p style="font-weight: bold; font-size: small; text-align: center; margin-top: 0;">METALURGICA ZETAR LTDA</p>
+                </div>
+                <div style="margin-left: 20px; max-height: 80px;">
+                    <p style="margin: 10px;"><span style="font-weight: bold;">Pedido Nº: </span> SO00013</p>
+                    <p style="margin: 10px;"><span style="font-weight: bold;">Cliente: </span> A SANTOS</p>
+                    <p style="margin: 10px;"><span style="font-weight: bold;">Entrada: </span> 17/11/2023</p>
+                    <p style="margin: 10px;"><span style="font-weight: bold;">Saída: </span> 21/11/2023</p>
+                    <p style="margin: 10px;"><span style="font-weight: bold;">Pedido Cliente: </span>569</p>
+                    <p style="margin: 10px;"><span style="font-weight: bold;">Transporte: </span> </p>
+                    <p style="margin: 10px;"><span style="font-weight: bold;">Prazo: </span> 2 Dias</p>
+                </div>
+            </div>
+        </header>
+        <!-- <h2>Sale Order Report</h2> -->
+        <!-- <t t-foreach="docs.move_raw_ids" t-as="line">
+            <tr>
+                <td><t t-esc="line.product_id.name"/></td>
+            </tr>
+        </t> -->
+        <table style="border-collapse: collapse; width: 100%; margin-top: 30px;">
+            <thead>
+                <tr style="background-color: rgb(212, 212, 212);">
+                    <th style="border: 1px solid #000;">Item</th>
+                    <th style="border: 1px solid #000;">Qtde</th>
+                    <th style="border: 1px solid #000;">UN</th>
+                    <th style="border: 1px solid #000;">Cód</th>
+                    <th style="border: 1px solid #000;">Produto</th>
+                    <th style="border: 1px solid #000;">Fab</th>
+                    <th style="border: 1px solid #000;">INT</th>
+                    <th style="border: 1px solid #000;">EXT</th>
+                    <th style="border: 1px solid #000;">ESP</th>
+                    <th style="border: 1px solid #000;">PESO</th>
+                    <th style="border: 1px solid #000;">VOL</th>
+                    <th style="border: 1px solid #000;">QTDE+</th>
+                    <th style="border: 1px solid #000;">Data</th>
+                    <th style="border: 1px solid #000;">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border: 1px solid #000;">1</td>
+                    <td style="border: 1px solid #000;">1,000</td>
+                    <td style="border: 1px solid #000;">ML</td>
+                    <td style="border: 1px solid #000;">AB1DZBF</td>
+                    <td style="border: 1px solid #000;">ABRAÇADEIRA TIPO"D"1" ZB PCT C/100 PÇAS</td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #000;">1</td>
+                    <td style="border: 1px solid #000;">1,000</td>
+                    <td style="border: 1px solid #000;">ML</td>
+                    <td style="border: 1px solid #000;">AB1DZBF</td>
+                    <td style="border: 1px solid #000;">ABRAÇADEIRA TIPO"D"1" ZB PCT C/100 PÇAS</td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #000;">1</td>
+                    <td style="border: 1px solid #000;">1,000</td>
+                    <td style="border: 1px solid #000;">ML</td>
+                    <td style="border: 1px solid #000;">AB1DZBF</td>
+                    <td style="border: 1px solid #000;">ABRAÇADEIRA TIPO"D"1" ZB PCT C/100 PÇAS</td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                    <td style="border: 1px solid #000;"></td>
+                </tr>
+                <!-- <t t-foreach="docs.move_raw_ids" t-as="line">
+                    <tr>
+                        <td><t t-esc="line.product_id.name"/></td>
+                    </tr>
+                </t> -->
+            </tbody>
+        </table>
+        <table style="margin-top: 20px; border-collapse: collapse; width: 100%;">
+            <thead>
+                <tr style="background-color: rgb(212, 212, 212);">
+                    <th style="border: 1px solid #000;" colspan="8">BENEFICIAMENTO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border: 1px solid #000;">
+                        <label style="font-weight: bold;" for="galvalle">GALVALLE </label>
+                        <input type="checkbox" id="galvalle" name="galvalle">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                        <label style="font-weight: bold;" for="galrrei">GALRREI </label>
+                        <input type="checkbox" id="galrrei" name="galrrei">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                        <label style="font-weight: bold;" for="bns">BNS </label>
+                        <input type="checkbox" id="bns" name="bns">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                        <label style="font-weight: bold;" for="ultraterm">ULTRATERM </label>
+                        <input type="checkbox" id="ultraterm" name="ultraterm">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                        <label style="font-weight: bold;" for="reaco">REAÇO </label>
+                        <input type="checkbox" id="reaco" name="reaco">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                        <label style="font-weight: bold;" for="qualitech">QUALITECH </label>
+                        <input type="checkbox" id="qualitech" name="qualitech">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                        <label style="font-weight: bold;" for="eliane">ELIANE </label>
+                        <input type="checkbox" id="eliane" name="eliane">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                        <label style="font-weight: bold;" for="metalizacao">METALIZAÇÃO </label>
+                        <input type="checkbox" id="metalizacao" name="metalizacao">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        QUANT __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        QUANT __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        QUANT __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        QUANT __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        QUANT __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        QUANT __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        QUANT __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        QUANT __________
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        DATA __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        DATA __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        DATA __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        DATA __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        DATA __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        DATA __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        DATA __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        DATA __________
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        PESO __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        PESO __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        PESO __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        PESO __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        PESO __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        PESO __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        PESO __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        PESO __________
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        RESP __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        RESP __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        RESP __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        RESP __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        RESP __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        RESP __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        RESP __________
+                    </td>
+                    <td style="border: 1px solid #000; font-weight: bold;">
+                        RESP __________
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <table style="margin-top: 20px; border-collapse: collapse; width: 100%;">
+            <thead>
+                <tr style="background-color: rgb(212, 212, 212);">
+                    <th style="border: 1px solid #000;" colspan="4">APROVAÇÃO INICIAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th style="border: 1px solid #000;" colspan="4">RESULTADO DOS ENSAIOS DE DUREZA</th>
+                </tr>
+                <tr>
+                    <td style="padding-top: 20px; border: 1px solid #000;">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-top: 20px; border: 1px solid #000;">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-top: 20px; border: 1px solid #000;">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-top: 20px; border: 1px solid #000;">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-top: 20px; border: 1px solid #000;">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                    </td>
+                    <td style="border: 1px solid #000;">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #000;" colspan="4">
+                        <label style="font-weight: bold;" for="aprovado">APROVADO </label>
+                        <input type="checkbox" id="aprovado" name="aprovado">
+                        
+                        <label style="margin-left: 100px; font-weight: bold;" for="reprovado">REPROVADO </label>
+                        <input type="checkbox" id="reprovado" name="reprovado">
+
+                        <span style="font-weight: bold; margin-left: 150px;">RESPONSÁVEL:_________________________________</span>
+                        <span style="font-weight: bold; margin-left: 150px;">DATA:__________________</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table style="margin-top: 20px; border-collapse: collapse; width: 100%;">
+            <thead>
+                <tr style="background-color: rgb(212, 212, 212);">
+                    <th style="border: 1px solid #000;" colspan="5">APROVAÇÃO FINAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th style="border: 1px solid #000;" colspan="1">ESPECIFICAÇÕES</th>
+                    <th style="border: 1px solid #000;" colspan="4">SITUAÇÃO</th>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #000;">
+                        DUREZA
+                    </td>
+                    <td style="border: 1px solid #000;">
+                        <label style="font-weight: bold;" for="aprovado_dureza">APROVADO </label>
+                        <input type="checkbox" id="aprovado_dureza" name="aprovado_dureza">
+                        
+                        <label style="margin-left: 100px; font-weight: bold;" for="reprovado_dureza">REPROVADO </label>
+                        <input type="checkbox" id="reprovado_dureza" name="reprovado_dureza">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #000;">
+                        DIMENSIONAL
+                    </td>
+                    <td style="border: 1px solid #000;">
+                        <label style="font-weight: bold;" for="aprovado_dimensional">APROVADO </label>
+                        <input type="checkbox" id="aprovado_dimensional" name="aprovado_dimensional">
+                        
+                        <label style="margin-left: 100px; font-weight: bold;" for="reprovado_dimensional">REPROVADO </label>
+                        <input type="checkbox" id="reprovado_dimensional" name="reprovado_dimensional">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #000;">
+                        EMBALAGEM
+                    </td>
+                    <td style="border: 1px solid #000;">
+                        <label style="font-weight: bold;" for="aprovado_embalagem">APROVADO </label>
+                        <input type="checkbox" id="aprovado_embalagem" name="aprovado_embalagem">
+                        
+                        <label style="margin-left: 100px; font-weight: bold;" for="reprovado_embalagem">REPROVADO </label>
+                        <input type="checkbox" id="reprovado_embalagem" name="reprovado_embalagem">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #000;">
+                        IDENTIFICAÇÃO
+                    </td>
+                    <td style="border: 1px solid #000;">
+                        <label style="font-weight: bold;" for="aprovado_identificacao">APROVADO </label>
+                        <input type="checkbox" id="aprovado_identificacao" name="aprovado_identificacao">
+                        
+                        <label style="margin-left: 100px; font-weight: bold;" for="reprovado_identificacao">REPROVADO </label>
+                        <input type="checkbox" id="reprovado_identificacao" name="reprovado_identificacao">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #000;">
+                        ASPECTO VISUAL
+                    </td>
+                    <td style="border: 1px solid #000;">
+                        <label style="font-weight: bold;" for="aprovado_visual">APROVADO </label>
+                        <input type="checkbox" id="aprovado_visual" name="aprovado_visual">
+                        
+                        <label style="margin-left: 100px; font-weight: bold;" for="reprovado_visual">REPROVADO </label>
+                        <input type="checkbox" id="reprovado_visual" name="reprovado_visual">
+                    </td>
+                </tr>
+                <tr style="border: 1px solid #000;">
+                    <td colspan="1">
+                    </td>
+                    <td colspan="4">
+                        <span style="font-weight: bold;">RESPONSÁVEL:_________________________________</span>
+                        <span style="font-weight: bold; margin-left: 150px;">DATA:__________________</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="display: flex; flex-direction: row; border: 1px solid #000; margin-top: 20px;">
+            <div style="border-right: 1px solid #000; padding-right: 400px;">
+                <p style="font-weight: bold;">
+                    CERTIFICADO DE QUALIDADE: [ ]
+                </p>
+                <span style="font-weight: bold;">ESTOQUE?   SIM [  ]       NÃO [   ]</span>
+            </div>
+            <div style="display:flex; align-items: end;">
+                ASS:_____________________________________________
+            </div>
+        </div>
+
+        <div style="display: flex; border: 1px solid #000; margin-top: 20px;">
+            <div>
+                OBS: 
+            </div>
+            <div>
+                <p>__________________________________________________________________________________________________________________________________________________________</p>
+                <p>__________________________________________________________________________________________________________________________________________________________</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

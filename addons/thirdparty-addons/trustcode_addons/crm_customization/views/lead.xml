@@ -1,0 +1,71 @@
+<odoo>
+    <record id="view_crm_lead_form" model="ir.ui.view">
+        <field name="name">Customization</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_set_won_rainbowman']" position="before">
+                <button string="Nova Negociação" name="action_new_quotation" type="object" class="oe_highlight"
+                    attrs="{'invisible': ['|', ('type', '=', 'lead'), '&amp;', ('probability', '=', 0), ('active', '=', False)]}"/>
+            </xpath>
+            <notebook position="inside">
+                <page string="Universidade">
+                    <group>
+                        <field name="coligada_id" />
+                        <field name="cfo_partner_id" />
+                    </group>
+                </page>
+                <page string="Informações Acadêmicas">
+                    <group>
+                        <field name="curso" />
+                        <field name="universidade"/>
+                        <field name="data_matricula"/>
+                        <field name="periodo"/>
+                        <field name="semestre"/>
+                        <field name="situacao_curso"/>
+                        <field name="situacao_estudante"/>
+                    </group>
+                </page>
+            </notebook>
+            <field name="partner_id" position="after">
+                <field name="registro_aluno" />
+            </field>
+            <field name="phone" position="after">
+                <field name="data_vencimento"/>
+                 <div class="o_row">
+                    <label for="vencido_ha" />
+                    <field name="vencido_ha"/><span>dias</span>
+                </div>
+                <field name="valor_original"/>
+                <field name="bolsa_pontualidade"/>
+                <field name="demais_bolsas"/>
+                <field name="valor_a_cobrar"/>
+                <field name="currency_id" invisible="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_crm_lead_filter" model="ir.ui.view">
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="registro_aluno" />
+            </field>
+        </field>
+    </record>
+
+    <record id="ir_actions_server_new_negotiation" model="ir.actions.server">
+        <field name="name">Criar negociação</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_crm_lead"/>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                action = records.action_merge_and_create_quotation()
+        </field>
+        <field name="binding_model_id" ref="crm.model_crm_lead"/>
+        <field name="binding_view_types">list,form</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="montec_commission_view_form" model="ir.ui.view">
+        <field name="name">montec_commission_view_form</field>
+        <field name="model">montec.commission</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group  string="Dados da Comissão">
+                        <field name="salesman"/>
+                        <field name="commission_percentage"/>
+                        <field name="commission_value"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="montec_commission_action">
+        <field name="name">Comissões</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">montec.commission</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    
+    <record id="montec_commission_wizard_view_form" model="ir.ui.view">
+        <field name="name">montec_commission_wizard_view_form</field>
+        <field name="model">montec.comission.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="" create="false">
+                <sheet>
+                    <group string="Exportar relatório">
+                        <field name="salesman" required="1"/>
+                        <field name="date_from" required="1"/>
+                        <field name="date_to" required="1"/>
+                    </group>
+                </sheet>
+
+
+                <footer>
+                    <button string="Emitir" class="oe_highlight" type="object" name="print_report" />
+                    <button string="Cancel" class="oe_secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+       
+    <record id="montec_commission_wizard_action" model="ir.actions.act_window">
+        <field name="name">Emitir Relatório de Comissões</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">montec.comission.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_montec_commission"/>
+    </record>
+
+    
+    <menuitem
+        name="Comissões"
+        id="montec_commission_menu"
+        action="montec_commission_action"
+        sequence="20"
+    />
+
+    <menuitem
+        name="Relatório"
+        id="montec_commission_wizard_menu"
+        action="montec_commission_wizard_action"
+        parent="montec_commision.montec_commission_menu"
+        sequence="1"
+    />
+
+
+
+</odoo>
